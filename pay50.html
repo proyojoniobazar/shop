@@ -379,15 +379,17 @@ $(document).ready(function() {
         let bkashUrl;
         const totalNumber = parseFloat(totalValue);
         
-        if (totalNumber === 1899) {
+        if (totalNumber === 1999) {
           bkashUrl = 'saving.html';
         } else if (totalNumber === 999) {
           bkashUrl = 'saving.html';
-        } else if (totalNumber === 2799) {
+        } else if (totalNumber === 2949) {
           bkashUrl = 'saving.html';
-        } else if (totalNumber === 4599) {
+        } else if (totalNumber === 4949) {
           bkashUrl = 'saving.html';
-        } else {
+        }else if (totalNumber === 3999) {
+          bkashUrl = 'saving.html';
+        }  else {
           bkashUrl = 'failed.html'; // Default URL if no match is found
         }
         
