@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            display: flex;
+           justify-content: center;
+       height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            width: 350px;
+            padding: 10px;
+            text-align: center;
+          opacity:0;
+  transform: translateY(20px);
+            animation: fadeIn .4s forwards;
+
+        }
+  @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            font-size: 50px;
+            color: green;
+        }
+        .separator {
+            border-top: 2px dotted #f62f5e;
+            margin: 15px 0;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin: 10px 0;
+        }
+        .details {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .details p {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        .details p span {
+            font-weight: bold;
+        }
+        .details .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .transaction-id-container {
+            display: flex;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        #transaction-id {
+            flex: 1;
+            padding: 5px;
+            background-color: #f9f9f9;
+            border-right: 1px solid #ccc;
+        }
+        .copy-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 5px;
+        }
+        .copy-button i {
+            margin-left: 5px;
+        }
+        .total {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        .button {
+            background-color: #fff;
+            color: #f62f5e;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #f62f5e;
+          color:#fff;
+        }
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            color: white;
+            box-shadow: 0 2px 7px gray;
+            
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            z-index: 1000;
+          
+        }
+        .bottom-bar a {
+            color: black;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            text-align: center;
+          font-weight:bold;
+            flex-direction: column;
+        }
+  @media (min-width: 780px) {
+    .container {
+            background-color: white;
+            width: 100%;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+            text-align: center;
+        }
+    .bottom-bar a{
+     font-size:30px; 
+    }
+    
+    
+    
+  }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+        <h1>Payment Success!</h1>
+        <p>Your order on <span style="color:#f62f5e;font-weight:bold">প্রয়োজনীয় বাজার</span> has been successfully placed.</p>
+        <div class="details">
+            <div class="detail-row">
+                <span style="font-weight:bold">Tnx ID</span>
+                <div class="transaction-id-container">
+                    <span id="transaction-id">#ABCDEFG</span>
+                    <button class="copy-button" onclick="copyTransactionId()">Copy</button>
+                </div>
+            </div>
+            <marquee style="color:#f62f5e;font-weight:bold"direction="left"> কোডটি কপি করে প্রয়োজনীয় বাজার ফেসবুক পেইজে পাঠিয়ে দিন অথবা মেসেজ দিন | Please copy this code and send it to proyojonio bazar facebook page.</marquee>
+            
+            <div class="separator"></div>
+            <div class="detail-row">
+                <span style="font-weight:bold">Payment Date</span>
+                <span id="pdate">19-Dec-2023</span>
+            </div>
+            <div class="detail-row">
+                <span style="font-weight:bold">Payment Method</span>
+                <span>Bkash</span>
+            </div>
+            <div class="detail-row">
+                <span style="font-weight:bold">Invoiced to</span>
+                <span id="username"></span>
+            </div>
+            <div class="detail-row">
+                <span style="font-weight:bold">Total Paid</span>
+                <span>৳ <span style="color:green" id="amountx">$</span></span>
+            </div>
+            <div class="detail-row">
+                <span style="font-weight:bold">Due on COD</span>
+                <span>৳ <span style="color:#f62f5e;font-size:20px" id="dueold">$</span></span>
+            </div>
+            <div class="detail-row">
+                <span style="font-weight:bold">For</span>
+                <span><span style="color: #497af5;font-weight:bold" id="unit"></span></span>
+            </div>
+        </div>
+        <div class="receipt-link">
+            <button class="button" id="pdf-button">Get Receipt</button>
+        </div>
+    </div>
+    <div class="bottom-bar">
+        <a href="shop.html"><i class="fas fa-home"></i>Home</a>
+        <a href="track.html"><i class="fas fa-truck-fast"></i>Orders</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script>
+function getData2(){
+  const amt = localStorage.getItem('amountx');
+  const due = amt - -1;
+  if ( amt === '8500' || amt === '400' || amt === '549' || amt === '15000' || amt === '1000') {
+                    document.getElementById('dueold').textContent = '0';
+  
+                } else {
+                    document.getElementById('dueold').textContent = due;
+  
+                }
+}
+
+        // Function to get data from local storage and URL parameters
+        function getData() {
+            document.getElementById('transaction-id').textContent = localStorage.getItem('uniqueId') || 'N/A';
+            document.getElementById('pdate').textContent = localStorage.getItem('paymentDate') || 'N/A';
+            document.getElementById('username').textContent = localStorage.getItem('username') || 'N/A';
+            document.getElementById('amountx').textContent = localStorage.getItem('amountx') || 'N/A';
+            document.getElementById('unit').textContent = localStorage.getItem('unit') || 'N/A';
+          }
+
+        // Call the function to populate the fields
+        getData2();
+getData();
+
+        // Function to download PDF
+        document.getElementById('pdf-button').addEventListener('click', function () {
+          window.location.href ='track.html';
+        });
+
+        // Function to copy the transaction ID to the clipboard
+        function copyTransactionId() {
+            const transactionId = document.getElementById('transaction-id').textContent;
+            navigator.clipboard.writeText(transactionId).then(function() {
+                alert('Transaction ID copied to clipboard');
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
