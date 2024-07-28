@@ -205,6 +205,19 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Custom URL name without reloading the page
+            if (history.pushState) {
+                var customName = 'orders';
+                var currentPath = window.location.pathname;
+                
+                if (currentPath === '/track.html') {
+                    var newPath = currentPath.replace('track.html', customName);
+                    var newUrl = window.location.protocol + "//" + window.location.host + newPath;
+                    history.pushState({path: newUrl}, '', newUrl);
+                }
+            }
+        });
 function getData(){
   const amt = localStorage.getItem('amountx');
   const due = amt - -1;
