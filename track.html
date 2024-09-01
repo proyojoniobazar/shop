@@ -156,7 +156,7 @@
         <p>Your previous order on <span style="color:#f62f5e;font-weight:bold"> প্রয়োজনীয় বাজার ⬇️</span></p>
         <div class="details">
             <div class="detail-row">
-                <span style="font-weight:bold">Tnx ID</span>
+                <span style="font-weight:bold">Order ID</span>
                 <div class="transaction-id-container">
                     <span id="transaction-id">#ABCDEFG</span>
                     <button class="copy-button" onclick="copyTransactionId()">Copy</button>
@@ -257,6 +257,8 @@ getData2();
 
         // Function to download PDF
         document.getElementById('pdf-button').addEventListener('click', function () {
+            const uniqueId = localStorage.getItem('uniqueId');
+            
             const element = document.querySelector('.container');
             html2pdf().from(element).save(uniqueId + '_pbshop.pdf');
         });
