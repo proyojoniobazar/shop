@@ -258,7 +258,7 @@ getData2();
         // Function to download PDF
         document.getElementById('pdf-button').addEventListener('click', function () {
             const element = document.querySelector('.container');
-            html2pdf().from(element).save('receipt.pdf');
+            html2pdf().from(element).save(uniqueId + '_pbshop.pdf');
         });
 
         // Function to copy the transaction ID to the clipboard
