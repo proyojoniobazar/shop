@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="message">
+            <h1>No data found! <br> <h3 style="color:red">Please order a product first!</h3></h1>
+            <div class="receipt">
+                <i style="color:#f62f5e" class="fa-solid fa-cart-shopping"></i>
+                 <div class="result" id="result"></div>
+            </div>
+             <p>Returning to shop in <span id="timer">7</span> sec</p>
+            </div>
+    </div>
+  <script>
+  let timerElement=document.getElementById("timer"),resultElement=document.getElementById("result"),countdown=7,countdownInterval=setInterval(()=>{countdown--,timerElement.textContent=countdown,countdown<=0&&(clearInterval(countdownInterval),window.location.href="shop.html")},1e3);</script>
+   </body>
+</html>

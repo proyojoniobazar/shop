@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রয়োজনীয় বাজার</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+          background: lightsteelblue;
+            padding-bottom: 50px; /* Space for the bottom bar */
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .header-bar {
+            width: 100%;
+            background: white;
+            color: whitesteels;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            position: fixed;
+            top: 5px;
+            margin:0;
+          border-radius:25px;
+            z-index: 1000;
+          box-shadow: 0 2px 7px gray;
+          transform: translateY(50%);
+            animation: fadeIn .9s forwards;
+            
+    }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 60px 5px 10px 5px; /* Adjust margin for the header */
+            justify-content: center;           
+        }
+
+        .product-card {
+            width: 180px;
+            position: relative;
+            box-shadow: 0 2px 7px #40798f;
+            margin: 10px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn .9s forwards;
+            height: 310px; /* Reduce height by 50% */
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .badge {
+            position: absolute;
+            left: 0;
+            top: 10px;
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: 700;
+            background: red;
+            color: #fff;
+            padding: 3px 10px;
+        }
+
+        .product-tumb {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 150px; /* Reduce height by 50% */
+            padding: 20px;
+            background: #f0f0f0;
+        }
+
+        .product-tumb img {
+            max-width: 100%;
+            max-height: 100%;
+          pointer-events: none;
+        }
+
+        .product-details {
+            padding: 10px;
+        }
+
+        .product-catagory {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #0096FF;
+            margin-bottom: 5px;
+        }
+
+        .product-details h4 a {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            color: #363636;
+            text-decoration: none;
+            transition: 0.6s;
+        }
+
+        .product-details h4 a:hover {
+            color: #fbb72c;
+        }
+
+        .product-details p {
+            display: none; /* Hide the description */
+            font-size: 12px;
+            line-height: 18px;
+            margin-bottom: 5px;
+            color: #999;
+        }
+        .product-bottom-details {
+            overflow: hidden;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            position: relative;
+        }
+
+        .product-bottom-details .product-price {
+            font-size: 20px;
+            color: green;
+            font-weight: 800;
+          margin-bottom:-8px;
+        }
+
+        .product-bottom-details .product-price small {
+            font-size: 70%;
+            font-weight: 400;
+            text-decoration: line-through;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .product-links {
+            text-align: right;
+        }
+
+        .product-links a {
+            display: inline-block;
+            margin-left: 5px;
+            color: red;
+            transition: 0.6s;
+            font-size: 15px;
+        }
+
+        .product-links a:hover {
+            color: #fbb72c;
+        }
+
+        .buy-now-button {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #f62f5e;
+            color: #e5e5e5;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 0px;
+            transition: background-color 0.6s;
+            font-weight: bold;
+          
+        }
+
+        .buy-now-button:hover {
+            background-color: #007bff;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+          opacity:0;
+          transform: translateZ(20px);
+            animation: fadeIn .6s forwards;
+        }
+@keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateZ(0);
+            }
+        }
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .popup-content img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .popup .product-details p {
+            display: block; /* Show the description in the popup */
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .product-card {
+                width: 48%;
+                margin: 1%;
+                
+            }
+            .buy-now-button{
+                margin-top:-10px;
+            }
+        }
+@media (min-width: 468px) {
+            .product-card {
+                width: 45%;
+                margin: 1%;
+            }
+        }
+
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+          color:blue;
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            z-index: 1000;
+          box-shadow: 0px 2px 7px gray;
+        }
+
+        .bottom-bar a {
+            color: black;
+            font-size: 14px;
+          font-weight:bold;
+          display:flex;
+          text-align:center;
+          flex-direction:column;
+        }
+  @media (min-width: 780px) {
+    .container {
+            background-color: white;
+            width: 100%;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top:30px;
+            text-align: center;
+        }
+    .bottom-bar a{
+     font-size:30px; 
+    }
+    .header-bar {
+      font-size:35px;
+    }
+    .product-card {
+                width: 48%;
+                margin: 1%;
+      height:124%;
+      font-size:25px;
+      
+            }
+    
+  }
+    @keyframes glow {
+      0% {
+         }
+      20% {
+        border: 2px solid #FF5733;
+        box-shadow: 0 0 10px #FF5733;
+      }
+      40% {
+        border: 2px solid #33FF57;
+        box-shadow: 0 0 10px #33FF57;
+      }
+      60% {
+        border: 2px solid #3357FF;
+        box-shadow: 0 0 10px #3357FF;
+      }
+      80% {
+        border: 2px solid #FF33A8;
+        box-shadow: 0 0 10px #FF33A8;
+      }100% {
+        border: 2px solid #33FFF5;
+        box-shadow: 0 0 10px #33FFF5;
+      }
+    }
+
+    .glowing {
+      animation: glow 5s infinite;
+    }
+    </style>
+</head>
+<body>
+
+<div class="header-bar">প্রয়োজনীয় বাজার</div>
+
+<div class="product-container">
+    <div  class="product-card" onclick="showPopup(this)">
+        <div id="badge" class="badge" style="color:navy;background-color:pink;">৳110 OFF with FD</div>
+        <div class="product-tumb">
+            <img src="honey1kg.jpeg" alt="honey">
+        </div>
+        <div class="product-details">
+            <span class="product-catagory">১ কেজি</span>
+            <h4><a href="javascript:void(0)">খাঁটি মধু🍯</a></h4>
+            <p> সরিষার ফুলের মধু খেয়ে আপনি থাকবেন সতেজ ও প্রানবন্ত।</p>
+            <div class="product-bottom-details">
+                <div class="product-price"><sup><small style="color:red">৳ 799</small></sup>৳689</div>
+                <div class="product-links">
+                    <a href=""><i class="fa fa-heart"></i> 6</a>
+                     </div>
+            </div>
+        </div>
+        <a href="adress1.html" class="buy-now-button">Buy Now</a>
+    </div>
+<div class="product-card" onclick="showPopup(this)">
+        <div id="badge2" class="badge" style="color:navy;background-color:pink">Top pick + FD</div>
+        <div class="product-tumb">
+            <img src="250g.jpg" alt="honey">
+        </div>
+        <div class="product-details">
+            <span class="product-catagory">৫০০ গ্রাম</span>
+            <h4><a href="javascript:void(0)">খাঁটি মধু🍯</a></h4>
+            <p>সরিষার ফুলের মধু খেয়ে আপনি থাকবেন সতেজ ও প্রানবন্ত। এই মধু শরীরের রক্তচাপ নিয়ন্ত্রনে সাহায্য করে ও ত্বকের উজ্জ্বলতা বৃদ্ধি করে।</p>
+            <div class="product-bottom-details">
+                <div class="product-price"><sup><small style="color:red">৳  479</small></sup>৳400</div>
+                <div class="product-links">
+                    <a href=""><i class="fa fa-heart"></i> 11</a>
+                     </div>
+            </div>
+        </div>
+        <a href="adress500.html" class="buy-now-button">Buy Now</a>
+    </div>
+    <div class="product-card" onclick="showPopup(this)">
+        <div class="badge">Free delivery</div>
+        <div class="product-tumb">
+            <img src="2kg.jpg" alt="honey">
+        </div>
+        <div class="product-details">
+            <span class="product-catagory">২ কেজি</span>
+            <h4><a href="javascript:void(0)">খাঁটি মধু🍯</a></h4>
+            <p>সরিষার ফুলের মধু খেয়ে আপনি থাকবেন সতেজ ও প্রানবন্ত। এই মধু শরীরের রক্তচাপ নিয়ন্ত্রনে সাহায্য করে ও ত্বকের উজ্জ্বলতা বৃদ্ধি করে।</p>
+            <div class="product-bottom-details">
+                <div class="product-price"><sup><small style="color:red">৳ 1249</small></sup>৳1189</div>
+                <div class="product-links">
+                    <a href=""><i class="fa fa-heart"></i> 4</a>
+                     </div>
+            </div>
+        </div>
+        <a style=""href="adress2.html" class="buy-now-button">Buy Now</a>
+    </div>
+
+    <div class="product-card" onclick="showPopup(this)"><div class="badge">Free delivery</div>
+        <div class="product-tumb">
+            <img src="3kg.jpg" alt="honey">
+        </div>
+        <div class="product-details">
+            <span class="product-catagory">৩ কেজি</span>
+            <h4><a href="javascript:void(0)">খাঁটি মধু🍯</a></h4>
+            <p>সরিষার ফুলের মধু খেয়ে আপনি থাকবেন সতেজ ও প্রানবন্ত। এই মধু শরীরের রক্তচাপ নিয়ন্ত্রনে সাহায্য করে ও ত্বকের উজ্জ্বলতা বৃদ্ধি করে।</p>
+            <div class="product-bottom-details">
+                <div class="product-price"><sup><small style="color:red">৳ 1529</small></sup>৳1479</div>
+                <div class="product-links">
+                    <a href=""><i class="fa fa-heart"></i> 0</a>
+                     </div>
+            </div>
+        </div>
+        <a href="adress3.html" class="buy-now-button">Buy Now</a>
+    </div>
+<div class="product-card" onclick="showPopup(this)">
+        <div class="badge">Free delivery</div>
+        <div class="product-tumb">
+            <img src="250.jpg" alt="honey">
+        </div>
+        <div class="product-details">
+            <span class="product-catagory">৪ কেজি</span>
+            <h4><a href="javascript:void(0)">খাঁটি মধু🍯</a></h4>
+            <p>সরিষার ফুলের মধু খেয়ে আপনি থাকবেন সতেজ ও প্রানবন্ত। এই মধু শরীরের রক্তচাপ নিয়ন্ত্রনে সাহায্য করে ও ত্বকের উজ্জ্বলতা বৃদ্ধি করে।</p>
+            <div class="product-bottom-details">
+                <div class="product-price"><sup><small style="color:red">৳ 2049</small></sup>৳1989</div>
+                <div class="product-links">
+                    <a href=""><i class="fa fa-heart"></i></a>
+                  <a href="">2</a>
+                     </div>
+            </div>
+        </div>
+        <a href="adress4.html" class="buy-now-button">Buy Now</a>
+    </div>
+  <div class="product-card" onclick="showPopup(this)">
+        <div class="badge" style="color:navy;background-color:pink">Lowest price + FD</div>
+        <div class="product-tumb">
+            <img src="10.jpg" alt="honey">
+        </div>
+        <div class="product-details">
+            <span class="product-catagory">৫ কেজি</span>
+            <h4><a href="javascript:void(0)">খাঁটি মধু🍯</a></h4>
+            <p>সরিষার ফুলের মধু খেয়ে আপনি থাকবেন সতেজ ও প্রানবন্ত। এই মধু শরীরের রক্তচাপ নিয়ন্ত্রনে সাহায্য করে ও ত্বকের উজ্জ্বলতা বৃদ্ধি করে।</p>
+            <div class="product-bottom-details">
+                <div class="product-price"><sup><small style="color:red">৳ 2599</small></sup>৳2389</div>
+                <div class="product-links">
+                    <a href=""><i class="fa fa-heart"></i> 1</a>
+                     </div>
+            </div>
+        </div>
+        <a href="adress5.html" class="buy-now-button">Buy Now</a>
+    </div>
+      <div style="display:none" class="product-card" onclick="showPopup(this)">
+        <div class="badge" style="color:navy;background-color:pink">Only for partners</div>
+        <div class="product-tumb">
+            <img src="stock.png" alt="honey">
+        </div>
+        <div class="product-details">
+            <span class="product-catagory">1 time</span>
+            <h4><a href="javascript:void(0)">Stock</a></h4>
+            <p>Buy stock on proyojonio bazan and get upto 100 taka bonus.</p>
+            <div class="product-bottom-details">
+                <div class="product-price"style="color:green;font-size:26.5px">৳1000</div>
+                <div class="product-links">
+                    <a href=""><i class="fa fa-heart"></i> </a>
+                     </div>
+            </div>
+        </div>
+        <a href="stock.html" class="buy-now-button">Buy Now</a>
+    </div>
+
+</div>
+
+<div class="popup" id="popup">
+    <div class="popup-content">
+        <button class="close-button" onclick="closePopup()">Close</button>
+        <div class="popup-details"></div>
+    </div>
+</div>
+
+<div class="bottom-bar">
+    <a href="" style="color:#f62f5e"><i class="fas fa-home"></i>Home</a>
+    <a id="track"><i class="fas fa-truck-fast"></i>Orders</a>
+</div>
+
+<script>
+    const trackLink = document.getElementById("track");
+
+    // Add a click event listener
+    trackLink.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent default link behavior
+
+        // Retrieve the value from localStorage
+        const track = localStorage.getItem("paidusing");
+
+        // Redirect based on the condition
+        if (!track) {
+            window.location.href = "track.html"; // Redirect to track.html
+        } else if (track.toLowerCase() === 'upbank') {
+            window.location.href = "track2.html"; // Redirect to track2.html
+        }
+    });const badge=document.getElementById("badge");function showPopup(e){let t=document.getElementById("popup"),l=document.querySelector(".popup-details"),o=e.querySelector(".product-details").innerHTML,d=e.querySelector(".product-tumb img").outerHTML;l.innerHTML=d+'<div class="product-details">'+o+"</div>",t.style.display="flex"}function closePopup(){let e=document.getElementById("popup");e.style.display="none"}badge.classList.add("glowing"),setTimeout(()=>{badge.classList.remove("glowing"),badge.style.boxShadow="none";let e=document.getElementById("badge2");e.classList.add("glowing"),setTimeout(()=>{e.classList.remove("glowing"),e.style.boxShadow="none"},3e3)},3e3);
+</script>
+
+</body>
+</html>

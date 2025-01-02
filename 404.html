@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="message">
+            <h1>4O4 <br> <h3 style="color:red"  > There is an error. Please try again !</h3></h1>
+            <div class="receipt">
+                <i style="color:black"class="fa-solid fa-rotate-left"></i>
+              <p>Returning to shop in <span id="timer">10</span> sec</p>
+                <div class="result" id="result"></div>
+            </div>
+            <p>Need help? Visit <a style="text-decoration:none"href="https://www.facebook.com/proyojoniobazarbd?mibextid=ZbWKwL">প্রয়োজনীয় বাজার</a></p>
+        </div>
+    </div>  <script>
+ let timerElement=document.getElementById("timer"),resultElement=document.getElementById("result"),countdown=10,countdownInterval=setInterval(()=>{countdown--,timerElement.textContent=countdown,countdown<=0&&(clearInterval(countdownInterval),window.location.href="shop.html")},1e3);</script>
+
+   </body>
+</html>

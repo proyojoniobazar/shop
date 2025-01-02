@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden; /* Prevent scrollbars */
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #eb8934, #ebc334);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    .timer {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap; /* Allow elements to wrap on smaller screens */
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .timer div {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-align: center;
+      width: 80px;
+      flex-shrink: 0; /* Prevent shrinking of timer elements */
+    }
+    .timer div span {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .timer div label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+    .button {
+      padding: 10px 20px;
+      background: #fff;
+      color: #2575fc;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 20px;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .button:hover {
+      background: #2575fc;
+      color: #fff;
+    }
+    /* Media Query for smaller screens */
+    @media (max-width: 400px) {
+      .timer {
+        gap: 5px;
+      }
+      .timer div {
+        width: 70px;
+        padding: 8px;
+      }
+      .timer div span {
+        font-size: 1.2rem;
+      }
+      .timer div label {
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Coming Soon</h1>
+    <p>Mother Bee is doing makeup rn</p>
+    <div class="timer" id="timer">
+      <div>
+        <span id="days">10</span>
+        <label>Days</label>
+      </div>
+      <div>
+        <span id="hours">00</span>
+        <label>Hours</label>
+      </div>
+      <div>
+        <span id="minutes">00</span>
+        <label>Minutes</label>
+      </div>
+      <div>
+        <span id="seconds">00</span>
+        <label>Seconds</label>
+      </div>
+    </div>
+    <a href="https://www.facebook.com/proyojoniobazarbd?mibextid=ZbWKwL" target="_blank" class="button">Follow us for updates</a>
+  </div>
+
+  <script>
+    const targetDate=new Date("2024-12-28T00:00:00");function updateTimer(){let t=new Date,e=targetDate-t;if(e<=0){document.getElementById("timer").innerHTML="<div><span>0</span><label>Time's up!</label></div>";return}document.getElementById("days").textContent=Math.floor(e/864e5),document.getElementById("hours").textContent=Math.floor(e%864e5/36e5).toString().padStart(2,"0"),document.getElementById("minutes").textContent=Math.floor(e%36e5/6e4).toString().padStart(2,"0"),document.getElementById("seconds").textContent=Math.floor(e%6e4/1e3).toString().padStart(2,"0")}targetDate.setDate(targetDate.getDate()+10),setInterval(updateTimer,1e3),updateTimer();
+  </script>
+</body>
+</html>

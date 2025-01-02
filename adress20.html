@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Address</title>
+    <link rel="stylesheet" href="astyle.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Delivery Details</h2>
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+            <label for="mobileNumber">Mobile Number</label>
+            <input type="tel" id="mobileNumber" placeholder="01XXXXXXXXX" required>
+        </div>
+        <div class="separator"></div>
+        <div class="form-group">
+            <label for="area">Area</label>
+            <textarea id="area" placeholder="e.g: Mirpur 10, Dhaka"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <textarea id="address" placeholder="e.g: road no 8, house no 578, Avenue 3." required></textarea>
+        </div>
+        <div class="info">
+            দ্রুত ডেলিভারি নিশ্চিত করতে আপনার সম্পূর্ণ ঠিকানা ( রাস্তা নম্বর সহ ) পূরণ করুন।
+        </div>
+        <div class="form-group">
+            <label for="landmark">Reference (Optional)</label>
+            <input type="tel" id="landmark" placeholder="mobile number">
+        </div>
+        
+        <div class="address-label-container">
+            <div id="officeLabel" class="address-label" onclick="selectLabel('office')">Office</div>
+            <div id="homeLabel" class="address-label" onclick="selectLabel('home')">Home</div>
+        </div>
+        <div class="separator"></div>
+        <div class="switch-container">
+            <div class="switch">
+                <label for="defaultDeliveryAddress">Save address</label>
+                <input type="checkbox" id="defaultDeliveryAddress">
+                <div class="toggle-switch" onclick="toggleSwitch(this)"></div>
+            </div>
+        </div>
+
+        <div class="order-summary"><div>
+                <span>Unit</span>
+                <span><span id="hmc"style="color: #497af5;font-weight:bold">20 KG</span></span>
+            </div>
+            
+            <div>
+                <span>Items Total</span>
+                <span>৳ <span id="itemsTotal">18000</span></span>
+            </div>
+            <div>
+                <span>Discount</span>
+                <span><span id="promoDiscount">-৳3000</span></span>
+            </div>
+            <div>
+                <span>Sum Total</span>
+                <span>৳<span style="font-weight:bold" id="totalPayment2"> 15000</span></span>
+            </div>
+            <div>
+                <input type="text" id="promoCode" placeholder="Enter discount Code">
+                <button class="btn-place-order" onclick="applyPromoCode()">Apply</button>
+            </div>
+        </div>
+        <div class="total-and-button">
+            <span class="total-text">Total: ৳ <span style="color:green" id="totalPayment">15000</span></span>
+            <button class="btn-place-order" onclick="saveData()">Place Order</button>
+        </div>
+    </div>
+ 
+    <script>
+        let selectedLabel = '';
+
+        function selectLabel(label) {
+            document.getElementById('officeLabel').classList.remove('selected');
+            document.getElementById('homeLabel').classList.remove('selected');
+
+            if (label === 'office') {
+                document.getElementById('officeLabel').classList.add('selected');
+            } else if (label === 'home') {
+                document.getElementById('homeLabel').classList.add('selected');
+            }
+
+            selectedLabel = label;
+        }
+
+        function toggleSwitch(toggle) {
+            const checkbox = toggle.previousElementSibling;
+            checkbox.checked = !checkbox.checked;
+
+            if (checkbox.checked) {
+                toggle.style.backgroundColor = '#f62f5e';
+                toggle.firstChild.style.transform = 'translateX(20px)';
+            } else {
+                toggle.style.backgroundColor = '#ccc';
+                toggle.firstChild.style.transform = 'translateX(0)';
+            }
+        }
+
+         function applyPromoCode() {
+            const promoCode = document.getElementById('promoCode').value;
+            let discount = 3000;
+
+            if (promoCode === 'DISCOUNT50') {
+                discount = 3000;
+            } else if (promoCode === 'DISCOUNT100') {
+                discount = 3000;
+            }
+           
+ document.getElementById('promoDiscount').textContent = '- ৳ ' + discount;
+            document.getElementById('promoDiscount').style.color = 'red';
+                       const itemsTotal = parseFloat(document.getElementById('itemsTotal').innerText);
+            const total = itemsTotal - discount ;
+            document.getElementById('totalPayment').innerText = total;
+       document.getElementById('totalPayment2').innerText = total;
+        }
+
+        function saveData() {
+    const fullName = document.getElementById('fullName').value;
+    const mobileNumber = document.getElementById('mobileNumber').value;
+    const area = document.getElementById('area').value;
+    const address = document.getElementById('address').value;
+    const hmc = '20Kg';
+    const amount = '15000';
+    const landmark = document.getElementById('landmark').value;
+    const checkbox = document.getElementById('defaultDeliveryAddress');
+
+    if (!fullName || !mobileNumber || !address) {
+        alert("Please fill in the required fields: Full Name, Mobile Number , address and Reference.");
+        return;
+    }
+
+    const data = {
+        fullName,
+        mobileNumber,
+        area,
+        address,
+        landmark,
+        hmc,
+        amount,
+        addressLabel: selectedLabel
+    };
+
+    if (checkbox.checked) {
+        const data2 = {
+            fullName,
+        mobileNumber,
+        area,
+        address,
+        landmark,
+        hmc,
+        amount,
+        addressLabel: selectedLabel,
+            defaultDeliveryAddress
+        };
+        localStorage.setItem('addressData2', JSON.stringify(data2));
+    }
+          if (!checkbox.checked) {
+            localStorage.removeItem('addressData2');
+          }
+
+    localStorage.setItem('addressData', JSON.stringify(data));
+    window.location.href = 'pay.html?total=' + document.getElementById('totalPayment').innerText;
+}
+
+        function loadData() {
+            const data2 = JSON.parse(localStorage.getItem('addressData2'));
+
+            if (data2) {
+                document.getElementById('fullName').value = data2.fullName;
+                document.getElementById('mobileNumber').value = data2.mobileNumber;
+                document.getElementById('area').value = data2.area;
+                document.getElementById('address').value = data2.address;
+                document.getElementById('landmark').value = data2.landmark;
+
+                if (data2.addressLabel === 'office') {
+                    selectLabel('office');
+                } else if (data2.addressLabel === 'home') {
+                    selectLabel('home');
+                }
+
+                document.getElementById('defaultDeliveryAddress').checked = data2.defaultDeliveryAddress;
+                const toggle = document.querySelector(`#defaultDeliveryAddress + .toggle-switch`);
+                toggle.style.backgroundColor = data2.defaultDeliveryAddress ? '#f62f5e' : '#ccc';
+                toggle.firstChild.style.transform = data2.defaultDeliveryAddress ? 'translateX(20px)' : 'translateX(0)';
+            }
+        }
+
+        window.onload = loadData;
+
+    </script>
+</body>
+</html>
