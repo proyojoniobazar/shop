@@ -119,7 +119,7 @@
   </div>
 
   <script>
-    const targetDate=new Date("2024-12-28T00:00:00");function updateTimer(){let t=new Date,e=targetDate-t;if(e<=0){window.location.href = 'shop.html';return}document.getElementById("days").textContent=Math.floor(e/864e5),document.getElementById("hours").textContent=Math.floor(e%864e5/36e5).toString().padStart(2,"0"),document.getElementById("minutes").textContent=Math.floor(e%36e5/6e4).toString().padStart(2,"0"),document.getElementById("seconds").textContent=Math.floor(e%6e4/1e3).toString().padStart(2,"0")}targetDate.setDate(targetDate.getDate()+8),setInterval(updateTimer,1e3),updateTimer();
+    const targetDate=new Date("2024-12-28T00:00:00");function updateTimer(){let t=new Date,e=targetDate-t;if(e<=0){window.location.href = 'shop.html';return}document.getElementById("days").textContent=Math.floor(e/864e5),document.getElementById("hours").textContent=Math.floor(e%864e5/36e5).toString().padStart(2,"0"),document.getElementById("minutes").textContent=Math.floor(e%36e5/6e4).toString().padStart(2,"0"),document.getElementById("seconds").textContent=Math.floor(e%6e4/1e3).toString().padStart(2,"0")}targetDate.setDate(targetDate.getDate()+10),setInterval(updateTimer,1e3),updateTimer();
   </script>
 </body>
 </html>
