@@ -47,7 +47,8 @@
             display: flex;
             flex-wrap: wrap;
             margin: 60px 5px 10px 5px; /* Adjust margin for the header */
-            justify-content: center;           
+            justify-content: center;
+           
         }
 
         .product-card {
@@ -248,7 +249,8 @@
                 margin-top:-10px;
             }
         }
-@media (min-width: 468px) {
+
+@media (min-width: 468px) {
             .product-card {
                 width: 45%;
                 margin: 1%;
@@ -334,46 +336,66 @@
 <body>
 
 <div class="header-bar">প্রয়োজনীয় বাজার</div>
-
 <div class="product-container">
-    <div  class="product-card" onclick="showPopup(this)">
-        <div id="badge" class="badge" style="color:navy;background-color:pink;">৳110 OFF with FD</div>
+    <div  class="product-card">
+       <div onclick="showPopup(this)" > <div id="badge" class="badge" style="color:navy;background-color:pink;">৳110 OFF with FD</div>
         <div class="product-tumb">
             <img src="honey1kg.jpeg" alt="honey">
         </div>
         <div class="product-details">
             <span class="product-catagory">১ কেজি</span>
             <h4><a href="javascript:void(0)">খাঁটি মধু🍯</a></h4>
-            <p> সরিষার ফুলের মধু খেয়ে আপনি থাকবেন সতেজ ও প্রানবন্ত।</p>
+            <p>১১০ টাকা ছাড় সাথে ফ্রি ডেলিভারি | সরিষার ফুলের মধু খেয়ে আপনি থাকবেন সতেজ ও প্রানবন্ত।</p>
             <div class="product-bottom-details">
                 <div class="product-price"><sup><small style="color:red">৳ 799</small></sup>৳689</div>
                 <div class="product-links">
                     <a href=""><i class="fa fa-heart"></i> 6</a>
                      </div>
             </div>
+</div>
         </div>
         <a href="adress1.html" class="buy-now-button">Buy Now</a>
     </div>
-<div class="product-card" onclick="showPopup(this)">
-        <div id="badge2" class="badge" style="color:navy;background-color:pink">Top pick + FD</div>
+<div class="product-card" >
+        <div onclick="showPopup(this)" ><div  class="badge" style="color:navy;background-color:pink">Top pick + FD</div>
         <div class="product-tumb">
             <img src="250g.jpg" alt="honey">
         </div>
         <div class="product-details">
             <span class="product-catagory">৫০০ গ্রাম</span>
             <h4><a href="javascript:void(0)">খাঁটি মধু🍯</a></h4>
-            <p>সরিষার ফুলের মধু খেয়ে আপনি থাকবেন সতেজ ও প্রানবন্ত। এই মধু শরীরের রক্তচাপ নিয়ন্ত্রনে সাহায্য করে ও ত্বকের উজ্জ্বলতা বৃদ্ধি করে।</p>
+            <p>৮০ টাকা ছাড় সাথে ফ্রি ডেলিভারি | মধু শরীরের রক্তচাপ নিয়ন্ত্রনে সাহায্য করে ও ত্বকের উজ্জ্বলতা বৃদ্ধি করে।</p>
             <div class="product-bottom-details">
-                <div class="product-price"><sup><small style="color:red">৳  479</small></sup>৳400</div>
+                <div class="product-price"><sup><small style="color:red">৳  479</small></sup>৳399</div>
                 <div class="product-links">
                     <a href=""><i class="fa fa-heart"></i> 11</a>
                      </div>
             </div>
         </div>
+</div>
         <a href="adress500.html" class="buy-now-button">Buy Now</a>
     </div>
-    <div class="product-card" onclick="showPopup(this)">
-        <div class="badge">Free delivery</div>
+   <div class="product-card" >
+      <div onclick="showPopup(this)" ><div id="badge2" class="badge" style="color:navy;background-color:pink">Lowest price + FD</div>
+        <div class="product-tumb">
+            <img src="10.jpg" alt="honey">
+        </div>
+        <div class="product-details">
+            <span class="product-catagory">৫ কেজি</span>
+            <h4><a href="javascript:void(0)">খাঁটি মধু🍯</a></h4>
+            <p>২১০ টাকা ছাড় সাথে ফ্রি ডেলিভারি | সরিষার ফুলের মধু ত্বকের উজ্জ্বলতা বৃদ্ধি করে।</p>
+            <div class="product-bottom-details">
+                <div class="product-price"><sup><small style="color:red">৳ 2599</small></sup>৳2389</div>
+                <div class="product-links">
+                    <a href=""><i class="fa fa-heart"></i> 1</a>
+                     </div>
+            </div>
+        </div>
+</div>
+        <a href="adress5.html" class="buy-now-button">Buy Now</a>
+    </div>
+   <div class="product-card" >
+        <div onclick="showPopup(this)" ><div class="badge">Free delivery</div>
         <div class="product-tumb">
             <img src="2kg.jpg" alt="honey">
         </div>
@@ -387,11 +409,13 @@
                     <a href=""><i class="fa fa-heart"></i> 4</a>
                      </div>
             </div>
+</div>
         </div>
         <a style=""href="adress2.html" class="buy-now-button">Buy Now</a>
     </div>
 
-    <div class="product-card" onclick="showPopup(this)"><div class="badge">Free delivery</div>
+    <div class="product-card">
+        <div onclick="showPopup(this)" ><div class="badge">Free delivery</div>
         <div class="product-tumb">
             <img src="3kg.jpg" alt="honey">
         </div>
@@ -405,11 +429,12 @@
                     <a href=""><i class="fa fa-heart"></i> 0</a>
                      </div>
             </div>
+</div>
         </div>
         <a href="adress3.html" class="buy-now-button">Buy Now</a>
     </div>
-<div class="product-card" onclick="showPopup(this)">
-        <div class="badge">Free delivery</div>
+<div class="product-card">
+        <div onclick="showPopup(this)" ><div class="badge">Free delivery</div>
         <div class="product-tumb">
             <img src="250.jpg" alt="honey">
         </div>
@@ -425,25 +450,8 @@
                      </div>
             </div>
         </div>
+</div>
         <a href="adress4.html" class="buy-now-button">Buy Now</a>
-    </div>
-  <div class="product-card" onclick="showPopup(this)">
-        <div class="badge" style="color:navy;background-color:pink">Lowest price + FD</div>
-        <div class="product-tumb">
-            <img src="10.jpg" alt="honey">
-        </div>
-        <div class="product-details">
-            <span class="product-catagory">৫ কেজি</span>
-            <h4><a href="javascript:void(0)">খাঁটি মধু🍯</a></h4>
-            <p>সরিষার ফুলের মধু খেয়ে আপনি থাকবেন সতেজ ও প্রানবন্ত। এই মধু শরীরের রক্তচাপ নিয়ন্ত্রনে সাহায্য করে ও ত্বকের উজ্জ্বলতা বৃদ্ধি করে।</p>
-            <div class="product-bottom-details">
-                <div class="product-price"><sup><small style="color:red">৳ 2599</small></sup>৳2389</div>
-                <div class="product-links">
-                    <a href=""><i class="fa fa-heart"></i> 1</a>
-                     </div>
-            </div>
-        </div>
-        <a href="adress5.html" class="buy-now-button">Buy Now</a>
     </div>
       <div style="display:none" class="product-card" onclick="showPopup(this)">
         <div class="badge" style="color:navy;background-color:pink">Only for partners</div>
@@ -475,7 +483,7 @@
 
 <div class="bottom-bar">
     <a href="" style="color:#f62f5e"><i class="fas fa-home"></i>Home</a>
-    <a id="track"><i class="fas fa-truck-fast"></i>Orders</a>
+    <a href="track.html"><i class="fas fa-truck-fast"></i>Orders</a>
 </div>
 
 <script>
