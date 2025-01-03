@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Success</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            display: flex;
+           justify-content: center;
+       height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            width: 350px;
+            padding: 10px;
+            text-align: center;
+          opacity:1;
+  transform: translateY(20px);
+            animation: fadeIn .6s forwards;
+
+        }
+  @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+.active{
+  display:none;
+}
+        .success-icon {
+            font-size: 50px;
+            color: #f62f5e;
+        }
+        .separator {
+            border-top: 2px dotted #f62f5e;
+            margin: 15px 0;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin: 10px 0;
+        }
+        .details {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .details p {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        .details p span {
+            font-weight: bold;
+        }
+        .details .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .transaction-id-container {
+            display: flex;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+          
+        }
+        #transaction-id {
+            flex: 1;
+            padding: 5px;
+            background-color: #f9f9f9;
+            border-right: 1px solid #ccc;
+        }
+        .copy-button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 5px;
+          font-weight:bold;
+            
+        }
+        .copy-button i {
+            margin-left: 5px;
+        }
+        .total {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        .button {
+            background-color: #f62f5e;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .button:hover {
+            background-color: white;
+          color:#f62f5e;
+        }
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            color: blue;
+            box-shadow: 0 2px 7px gray;
+            
+            width: 100%;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+        .bottom-bar a {
+            color: black;
+            font-size: 14px;
+          font-weight:bold;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            text-decoration: none;
+        }
+    @media (min-width: 780px) {
+    .container {
+            background-color: white;
+            width: 100%;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+            text-align: center;
+        }
+    .bottom-bar a{
+     font-size:30px; 
+    }
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon"><i class="fas fa-cart-shopping"></i></div>
+        <h1>Purchase History</h1>
+        <p>Your order on <span style="color:#f62f5e;font-weight:bold"> প্রয়োজনীয় বাজার ⬇️</span></p>
+        <div class="details">
+            <div class="detail-row">
+                <span style="font-weight:bold">Order ID</span>
+                <div class="transaction-id-container">
+                    <span id="transaction-id">#ABCDEFG</span>
+                    <button class="copy-button" onclick="copyTransactionId()">Copy</button>
+                </div>
+            </div>
+            <div class="detail-row">
+                <span style="font-weight:bold">Payment Date</span>
+                <span id="pdate"></span>
+            </div>
+            <div class="detail-row">
+                <span style="font-weight:bold">Estimate Delivery Date</span>
+                <span id="p2date">within 6 days</span>
+            </div>
+            <div class="separator"></div>
+            <div class="detail-row">
+                <span style="font-weight:bold">Name</span>
+                <span style="color:#f62f5e" id="username"></span>
+            </div>
+            <div class="detail-row">
+                <span style="font-weight:bold">Address</span>
+                <span id="adress"></span>
+            </div>
+            <div class="detail-row">
+                <span style="font-weight:bold">Total Unit</span>
+                <span><span style="color: #497af5;font-weight:bold" id="unit"></span></span>
+            </div>
+            <div class="detail-row">
+                <span style="font-weight:bold">Total Paid</span>
+                <span>৳ <span style="color:green" id="amountx"></span></span>
+            </div>
+          <div class="detail-row">
+                <span style="font-weight:bold">Due on COD</span>
+                <span>৳ <span style="color:#f62f5e;font-size:22px" id="dueold"></span></span>
+            </div>
+        </div>
+        <button class="button" id="pdf-button">Download PDF Receipt</button>
+    </div>
+    <div class="bottom-bar">
+        <a href="shop.html" ><i class="fas fa-home"></i>Home</a>
+        <a href="" style="color:#f62f5e"><i class="fas fa-truck-fast"></i>Orders</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded",function(){if(history.pushState){var t=window.location.pathname;if("/track.html"===t){var e=t.replace("track.html","orders"),n=window.location.protocol+"//"+window.location.host+e;history.pushState({path:n},"",n)}}});const sheetUrl1="https://docs.google.com/spreadsheets/d/1Red8hzcgWsABq0QwQs17PL4xE67acmiCXcbZEBF7aSY/gviz/tq?tqx=out:csv";async function fetchSheetData(t){try{let e=await fetch(t),n=await e.text();return parseCSV(n)}catch(a){window.location.href="404.html"}}function parseCSV(t){let e=t.split("\n").filter(t=>""!==t.trim());return e.map(t=>t.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(t=>t.replace(/^"|"$/g,"").trim()))}async function getData(){let t=Number(localStorage.getItem("amountx"))||0,e=t+1,n=localStorage.getItem("phonenmb"),a=await fetchSheetData("https://docs.google.com/spreadsheets/d/1Red8hzcgWsABq0QwQs17PL4xE67acmiCXcbZEBF7aSY/gviz/tq?tqx=out:csv");if(!a||!n){document.getElementById("dueold").textContent=e;return}let o=a[a.length-1],i=a[a.length-2];if(o&&o.length>=4){let r=o[1],m=i[1],d=o[3],l=i[3],c=i[2],s=localStorage.getItem("tnxid");if(r===n&&"Paid"===d&&(e=0,t=2*t+1),m===n&&s===c&&"done"===l){localStorage.removeItem("uniqueId"),localStorage.removeItem("paymentDate"),localStorage.removeItem("adress"),localStorage.removeItem("username"),localStorage.removeItem("amountx"),localStorage.removeItem("unit"),window.location.href="shop.html";return}}document.getElementById("amountx").textContent=t,document.getElementById("dueold").textContent=e}function getData2(){let t=localStorage.getItem("uniqueId"),e=localStorage.getItem("paymentDate"),n=localStorage.getItem("adress"),a=localStorage.getItem("username"),o=localStorage.getItem("amountx"),i=localStorage.getItem("unit");t&&e&&a&&o?(document.getElementById("transaction-id").textContent=t||"N/A",document.getElementById("adress").textContent=n||"N/A",document.getElementById("pdate").textContent=e||"N/A",document.getElementById("username").textContent=a||"N/A",document.getElementById("unit").textContent=i||"N/A"):window.location.href="failed.html"}function copyTransactionId(){let t=document.getElementById("transaction-id").textContent;navigator.clipboard.writeText(t).then(function(){alert("copied to clipboard")},function(t){})}window.addEventListener("keydown",t=>{("F5"===t.key||t.ctrlKey&&"r"===t.key||t.metaKey&&"r"===t.key)&&(t.preventDefault(),alert("Reload is disabled while processing."))}),window.addEventListener("contextmenu",t=>{t.preventDefault()}),window.onload=async()=>{await getData()},getData2(),document.getElementById("pdf-button").addEventListener("click",function(){let t=localStorage.getItem("uniqueId"),e=document.querySelector(".container");html2pdf().from(e).save(t+"_pbshop.pdf")});
+    </script>
+</body>
+</html>
