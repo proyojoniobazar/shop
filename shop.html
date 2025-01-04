@@ -47,7 +47,8 @@
             display: flex;
             flex-wrap: wrap;
             margin: 70px 5px 10px 5px; /* Adjust margin for the header */
-            justify-content: center;           
+            justify-content: center;
+           
         }
 
         .product-card {
@@ -244,7 +245,8 @@
                 margin: 1%;
                 
             }
-                   }
+                   }
+
         .bottom-bar {
             position: fixed;
             bottom: 0;
@@ -340,7 +342,8 @@
                 <div class="product-links">
                     <a href=""><i class="fa fa-heart"></i> 6</a>
                      </div>
-            </div></div>
+            </div>
+</div>
         </div>
         <a href="adress1.html" class="buy-now-button">Buy Now</a>
     </div>
@@ -359,7 +362,8 @@
                     <a href=""><i class="fa fa-heart"></i> 11</a>
                      </div>
             </div>
-        </div></div>
+        </div>
+</div>
         <a href="adress500.html" class="buy-now-button">Buy Now</a>
     </div>
    <div class="product-card" >
@@ -377,7 +381,8 @@
                     <a href=""><i class="fa fa-heart"></i> 1</a>
                      </div>
             </div>
-        </div></div>
+        </div>
+</div>
         <a href="adress5.html" class="buy-now-button">Buy Now</a>
     </div>
    <div class="product-card" >
@@ -394,7 +399,8 @@
                 <div class="product-links">
                     <a href=""><i class="fa fa-heart"></i> 4</a>
                      </div>
-            </div></div>
+            </div>
+</div>
         </div>
         <a style=""href="adress2.html" class="buy-now-button">Buy Now</a>
     </div>
@@ -413,7 +419,8 @@
                 <div class="product-links">
                     <a href=""><i class="fa fa-heart"></i> 0</a>
                      </div>
-            </div></div>
+            </div>
+</div>
         </div>
         <a href="adress3.html" class="buy-now-button">Buy Now</a>
     </div>
@@ -433,7 +440,8 @@
                   <a href="">2</a>
                      </div>
             </div>
-        </div></div>
+        </div>
+</div>
         <a href="adress4.html" class="buy-now-button">Buy Now</a>
     </div>
       <div style="display:none" class="product-card" onclick="showPopup(this)">
@@ -468,7 +476,7 @@
     <a href="" style="color:#f62f5e"><i class="fas fa-home"></i>Home</a>
     <a id="track"><i class="fas fa-truck-fast"></i>Orders</a>
 </div>
-
+<script>document.addEventListener("contextmenu",function(e){e.preventDefault()}),document.addEventListener("keydown",function(e){if("F12"===e.key||e.ctrlKey&&e.shiftKey&&("I"===e.key||"J"===e.key)||e.ctrlKey&&"U"===e.key)return e.preventDefault(),!1}),function(){let e=new Image;Object.defineProperty(e,"id",{get:function(){window.location.replace("about:blank")}}),console.log("%c",e)}();</script>
 <script>
    const trackLink=document.getElementById("track");trackLink.addEventListener("click",function(e){e.preventDefault();let t=localStorage.getItem("paidusing");t?"upbank"===t.toLowerCase()&&(window.location.href="track2.html"):window.location.href="track.html"});const badge=document.getElementById("badge");function showPopup(e){let t=document.getElementById("popup"),o=document.querySelector(".popup-details"),l=e.querySelector(".product-details").innerHTML,n=e.querySelector(".product-tumb img").outerHTML;o.innerHTML=n+'<div class="product-details">'+l+"</div>",t.style.display="flex"}function closePopup(){document.getElementById("popup").style.display="none"}badge.classList.add("glowing"),setTimeout(()=>{badge.classList.remove("glowing"),badge.style.boxShadow="none";let e=document.getElementById("badge2");e.classList.add("glowing"),setTimeout(()=>{e.classList.remove("glowing"),e.style.boxShadow="none"},3e3)},3e3);</script>
 
